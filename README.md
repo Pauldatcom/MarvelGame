@@ -23,7 +23,9 @@ Executer yarn run dev pour lancer le jeu
 Projet réalise dans le cadre d'un projet scolaire. 
 
 Projet open-source sous licence MIT. 
-Musique sous licence. 
+Musique Licence/Copyright. 
+Modèle 3D License:
+CC Attribution (My bad j'ai dit de la merde pendant la prés) Y'en a 2 
 
 🛠 Améliorations futures
 ✔ Ajout d’un leaderboard en ligne 📊
