@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Connexion - Marvel 4 Fantastiques</title>
+    <link rel="stylesheet" href="secondConnexion.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <img src="public/img/MARVELOGO.PNG" alt="Marvel Logo" />
+      <h1>ESCAPE FROM KANG</h1>
+      <div class="form-group">
+        <input type="email" placeholder="E-mail" required />
+      </div>
+      <div class="form-group">
+        <input type="password" placeholder="Mot de passe" required />
+      </div>
+      <button class="btn">Se connecter</button>
+    </div>
+
+    <script>
+      document.querySelector(".btn").addEventListener("click", () => {
+    const email = document.querySelector("input[type='email']").value;
+    const password = document.querySelector("input[type='password']").value;
+
+    fetch("http://localhost/MARVELRUNNER/login.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            localStorage.setItem("user_id", data.user_id);
+            window.location.href = "selectionCharater.html"; // Redirige vers le menu principal
+        } else {
+            alert("Échec de connexion : " + data.error);
+        }
+    })
+    .catch(err => console.error("Erreur Fetch :", err));
+});
+    </script>
+  </body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sélection des Personnages</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 class="title">Sélection des Personnages</h1>
+    <div id="model-container"></div>
+
+    <button id="playButton">Jouer</button>
+
+    <div class="featured-character">
+      <img src="public/img/image2.png" alt="Personnage Sélectionné" />
+    </div>
+
+    <div class="character-grid">
+      <div class="character-slot" data-image="public/img/image1.png">
+        <img src="public/img/image11.png" alt="Personnage 1" />
+        <div class="character-name">Ms Fantastic</div>
+      </div>
+      <div class="character-slot" data-image="public/img/image2.png">
+        <img src="public/img/image8.png" alt="Personnage 2" />
+        <div class="character-name">
+          human torch</div>
+      </div>
+      <div class="character-slot" data-image="public/img/image3.PNG">
+        <img src="public/img/image10.png" alt="Personnage 3" />
+        <div class="character-name">Kang</div>
+      </div>
+      <div class="character-slot" data-image="public/img/image4.jpg">
+        <img src="public/img/image9.png" alt="Personnage 4" />
+        <div class="character-name">The Thing</div>
+      </div>
+    </div>
+    <audio id="bgMusic" src="public/sounds/sonMarvel.mp4" loop autoplay></audio>
+
+    
+  
+
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+   const playButton = document.getElementById("playButton");
+   
+   console.log("🔍 Vérification : playButton =", playButton); // ✅ Debug
+
+   if (!playButton) {
+       console.error("❌ Erreur : le bouton 'Jouer' n'a pas été trouvé !");
+       return;
+   }
+
+   playButton.addEventListener("click", () => {
+       console.log("✅ Bouton 'Jouer' cliqué !");
+       window.location.href = "index.html";
+   });
+});
+
+   </script>
+   <script type="module" src="script.js"></script>
+</html>

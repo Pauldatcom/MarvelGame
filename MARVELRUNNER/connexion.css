@@ -1,0 +1,117 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(public/img/image7.PNG) no-repeat center center;
+  background-size: cover;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Pseudo-élément pour appliquer un filtre d'opacité à l'image de fond */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  z-index: -1;
+}
+
+.login-container {
+  padding: 10px; /* Réduit encore l'espace intérieur */
+  border-radius: 15px;
+  text-align: center;
+  color: white;
+  max-width: 330px; /* Réduit la largeur pour rendre le tout plus compact */
+  width: 100%;
+  margin: 10px 0; /* Réduit l'espace vertical entre les éléments */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group {
+  position: relative;
+  width: 100%;
+  margin: 6px 0; /* Réduit encore l'espace entre les champs */
+}
+
+.highlighted {
+  border: 3px solid #1e81ff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #1e80ff8b;
+  padding: 8px; /* Légèrement réduit le padding */
+}
+
+.login-container img {
+  width: 100px; /* Réduit davantage la taille du logo */
+  margin-bottom: 12px; /* Ajout d'une petite marge pour espacer le logo des champs */
+}
+
+input,
+select {
+  width: 90%;
+  padding: 10px; /* Réduit le padding des champs */
+  margin: 6px auto; /* Espacement plus compact entre les champs */
+  border-radius: 6px;
+  border: none;
+  display: block;
+  text-align: center;
+  background: rgba(255, 254, 254, 0.9);
+  color: #494949b6;
+  font: 14px "Poppins", sans-serif; /* Réduit la taille de la police */
+  outline: none;
+  transition: 0.3s;
+}
+
+.btn-register {
+  background: #1e81ff;
+  color: white;
+  font-size: 16px; /* Réduit la taille du texte */
+  padding: 10px; /* Réduit le padding pour que le bouton soit plus petit */
+  cursor: pointer;
+  width: 95%;
+  border-radius: 5px;
+  border: none;
+  transition: 0.3s;
+  font-weight: bold;
+}
+
+.btn-register:hover {
+  background: #1e81ff;
+  transform: scale(1.03); /* Légère réduction de l'effet de zoom */
+}
+
+@media screen and (min-width: 1024px) {
+  .login-container img {
+    width: 17vw; /* Utilise un pourcentage de la largeur de la fenêtre */
+    max-width: 150px; /* Définit une taille maximale pour éviter qu'il devienne trop grand */
+    margin-bottom: 12px;
+  }
+}
+
+input,
+select {
+  padding: 12px;
+  font-size: 14px; /* Garder la taille du texte petite */
+}
+
+.btn {
+  font-size: 16px;
+  padding: 10px;
+}
