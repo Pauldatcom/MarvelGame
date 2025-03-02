@@ -45,12 +45,7 @@
     document.addEventListener("DOMContentLoaded", () => {
    const playButton = document.getElementById("playButton");
    
-   console.log("🔍 Vérification : playButton =", playButton); // ✅ Debug
-
-   if (!playButton) {
-       console.error("❌ Erreur : le bouton 'Jouer' n'a pas été trouvé !");
-       return;
-   }
+  
 
    playButton.addEventListener("click", () => {
        console.log("✅ Bouton 'Jouer' cliqué !");

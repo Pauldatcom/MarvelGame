@@ -13,7 +13,7 @@ body {
   overflow: hidden;
 }
 
-/* Image d'introduction */
+
 .intro-image {
   position: fixed;
   top: 0;
@@ -47,7 +47,7 @@ video {
   z-index: 10;
 }
 
-/* Conteneur de l'image et des boutons */
+
 #image-container {
   display: none;
   position: fixed;
@@ -58,7 +58,7 @@ video {
   z-index: 10;
 }
 
-/* Image finale */
+
 #image {
   width: 100%;
   height: 100vh;
@@ -68,7 +68,7 @@ video {
   left: 0;
 }
 
-/* Conteneur des boutons */
+
 .buttons-container {
   position: absolute;
   bottom: 40px;
@@ -80,7 +80,7 @@ video {
   z-index: 20;
 }
 
-/* Style des boutons */
+
 .action-button {
   padding: 15px 30px;
   font-size: 18px;
@@ -101,11 +101,4 @@ video {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* .action-button.signup {
-  background-color: transparent;
-  border: 2px solid #1e81ff;
-}
 
-.action-button.signup:hover {
-  background-color: rgba(30, 129, 255, 0.1);
-} */

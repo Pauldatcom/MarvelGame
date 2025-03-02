@@ -21,12 +21,12 @@ document.addEventListener("DOMContentLoaded", () => {
       0.1,
       1000
     );
-    // Lumière directionnelle puissante (simule le soleil)
+    // Ligh powerfull like the sun 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 3);
     directionalLight.position.set(5, 5, 5);
     scene.add(directionalLight);
 
-    // Lumière ambiante pour adoucir les ombres
+    // Light for the shadows
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
     scene.add(ambientLight);
     camera.position.set(0, 2, 10);
@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function loadModel(modelPath) {
-    console.log("Chargement du modèle :", modelPath);
     if (model) {
       scene.remove(model);
     }
@@ -62,8 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
         
         model.traverse((child) => {
           if (child.isMesh) {
-            child.material.side = THREE.DoubleSide; // Permet d'afficher les deux côtés des surfaces
-            child.material.needsUpdate = true; // Met à jour le rendu
+            child.material.side = THREE.DoubleSide; 
+            child.material.needsUpdate = true; 
           }
         });
         const scaleFactor = 3 / size; // Réduit l’échelle à une taille raisonnable
@@ -79,11 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         //   new THREE.Box3().setFromObject(model).getSize(new THREE.Vector3())
         // );
 
-        console.log("Modèle chargé avec succès !");
-      },
-      undefined,
-      (error) => {
-        console.error("Erreur lors du chargement du modèle :", error);
+      
       }
     );
   }
@@ -113,13 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
   loadModel("public/models/kang6.glb");
   characterSlots.forEach((slot, index) => {
     slot.addEventListener("click", () => {
-      let selectedCharacter = modelKeys[index]; // ✅ Met à jour le personnage sélectionné
-      localStorage.setItem("selectedCharacter", selectedCharacter); // ✅ Stocke la valeur
-      console.log("Personnage sélectionné et stocké :", selectedCharacter);
+      let selectedCharacter = modelKeys[index]; // Update the character selected 
+      localStorage.setItem("selectedCharacter", selectedCharacter); // stores the character
       
-  
-      loadModel(modelPaths[index]); // ✅ Charge le bon modèle
-      const userId = localStorage.getItem("user_id"); // ✅ Récupère user_id du localStorage
+      loadModel(modelPaths[index]); // Load the right character
+      const userId = localStorage.getItem("user_id"); // Get the user from local storage
 
       if (!userId) {
           console.error("❌ Aucun user_id trouvé !");
@@ -130,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
       fetch("http://localhost/MARVELRUNNER/select_character.php", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ user_id: userId, character_name: selectedCharacter }) // ✅ user_id ajouté
+          body: JSON.stringify({ user_id: userId, character_name: selectedCharacter }) 
       })
       .then(res => res.json())
       .then(data => {
@@ -214,19 +207,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const playButton = document.getElementById("playButton");
 
   if (bgMusic) {
-    bgMusic.volume = 0.4; // Ajuste le volume (0.0 = muet, 1.0 = max)
+    bgMusic.volume = 0.4; 
   }
   if (playButton) {
     playButton.addEventListener("click", () => {
       if (bgMusic) {
-        bgMusic.pause(); // Arrête la musique
-        bgMusic.currentTime = 0; // Remet à zéro
+        bgMusic.pause(); 
+        bgMusic.currentTime = 0; 
       }
-      window.location.href = "jeu.html"; // Redirige vers la page du jeu
+      window.location.href = "jeu.html"; // Redirect to the game 
     });
   }
 });
 
-// setTimeout(() => {
-//   window.location.href = "jeu.html"; // Redirection vers la page du jeu
-// }, 1000)

@@ -19,7 +19,7 @@ body {
   overflow: hidden;
 }
 
-/* Pseudo-élément pour appliquer un filtre d'opacité à l'image de fond */
+
 body::before {
   content: "";
   position: absolute;
@@ -32,13 +32,13 @@ body::before {
 }
 
 .login-container {
-  padding: 10px; /* Réduit encore l'espace intérieur */
+  padding: 10px; 
   border-radius: 15px;
   text-align: center;
   color: white;
-  max-width: 330px; /* Réduit la largeur pour rendre le tout plus compact */
+  max-width: 330px; 
   width: 100%;
-  margin: 10px 0; /* Réduit l'espace vertical entre les éléments */
+  margin: 10px 0; 
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,33 +48,33 @@ body::before {
 .form-group {
   position: relative;
   width: 100%;
-  margin: 6px 0; /* Réduit encore l'espace entre les champs */
+  margin: 6px 0; 
 }
 
 .highlighted {
   border: 3px solid #1e81ff;
   border-radius: 10px;
   box-shadow: 0 0 10px #1e80ff8b;
-  padding: 8px; /* Légèrement réduit le padding */
+  padding: 8px; 
 }
 
 .login-container img {
-  width: 100px; /* Réduit davantage la taille du logo */
-  margin-bottom: 12px; /* Ajout d'une petite marge pour espacer le logo des champs */
+  width: 100px; 
+  margin-bottom: 12px; 
 }
 
 input,
 select {
   width: 90%;
-  padding: 10px; /* Réduit le padding des champs */
-  margin: 6px auto; /* Espacement plus compact entre les champs */
+  padding: 10px; 
+  margin: 6px auto;
   border-radius: 6px;
   border: none;
   display: block;
   text-align: center;
   background: rgba(255, 254, 254, 0.9);
   color: #494949b6;
-  font: 14px "Poppins", sans-serif; /* Réduit la taille de la police */
+  font: 14px "Poppins", sans-serif; 
   outline: none;
   transition: 0.3s;
 }
@@ -82,8 +82,8 @@ select {
 .btn {
   background: #1e81ff;
   color: white;
-  font-size: 16px; /* Réduit la taille du texte */
-  padding: 10px; /* Réduit le padding pour que le bouton soit plus petit */
+  font-size: 16px; 
+  padding: 10px; 
   cursor: pointer;
   width: 95%;
   border-radius: 5px;
@@ -94,13 +94,13 @@ select {
 
 .btn:hover {
   background: #1e81ff;
-  transform: scale(1.03); /* Légère réduction de l'effet de zoom */
+  transform: scale(1.03); 
 }
 
 @media screen and (min-width: 1024px) {
   .login-container img {
-    width: 17vw; /* Utilise un pourcentage de la largeur de la fenêtre */
-    max-width: 150px; /* Définit une taille maximale pour éviter qu'il devienne trop grand */
+    width: 17vw; 
+    max-width: 150px; 
     margin-bottom: 12px;
   }
 }
@@ -108,7 +108,7 @@ select {
 input,
 select {
   padding: 12px;
-  font-size: 14px; /* Garder la taille du texte petite */
+  font-size: 14px; 
 }
 
 .btn {

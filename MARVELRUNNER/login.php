@@ -1,24 +1,20 @@
 <?php
-// ✅ Active le mode debug pour voir les erreurs
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-// ✅ Ajoute les headers CORS et JSON
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Content-Type: application/json");
 
 session_start();
-require_once 'connexion_bdd.php'; // ✅ Vérifie que ce fichier existe et contient la connexion
+require_once 'connexion_bdd.php'; 
 
-// ✅ Vérifie si la connexion est bien établie
+
 if (!$conn) {
     echo json_encode(["error" => "Échec de connexion à la base de données"]);
     exit;
 }
 
-// ✅ Récupère les données envoyées en JSON
+// Get the data in Json 
 $data = json_decode(file_get_contents("php://input"), true);
 
 if (!isset($data['email']) || !isset($data['password'])) {
@@ -29,7 +25,7 @@ if (!isset($data['email']) || !isset($data['password'])) {
 $email = $data['email'];
 $password = $data['password'];
 
-// ✅ Vérifie si l'utilisateur existe
+//Check if the id is real 
 $sql = "SELECT id, password FROM users WHERE email = ?";
 $stmt = $conn->prepare($sql);
 

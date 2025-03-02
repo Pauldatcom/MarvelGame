@@ -6,21 +6,21 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
 if (!localStorage.getItem("user_id")) {
   console.error("❌ Aucun user_id trouvé dans localStorage !");
-  window.location.href = "index.html"; // Redirige vers la connexion si l'utilisateur n'est pas connecté
+  window.location.href = "index.html"; 
 }
 
 
 document.body.style.overflow = "hidden";
 document.documentElement.style.overflow = "hidden";
 
-const gameMusic = new Audio("public/sounds/CONVERSATION.mp3"); // Remplace par ton fichier
-gameMusic.loop = true; // La musique tourne en boucle
-gameMusic.volume = 0.2; // Volume de départ (ajuste si nécessaire)
+const gameMusic = new Audio("public/sounds/CONVERSATION.mp3"); 
+gameMusic.loop = true; 
+gameMusic.volume = 0.2; 
 document.body.appendChild(gameMusic);
 const obstacles = [];
 const obstacleTypes = [];
 const MAX_OBSTACLES = 8;
-const obstacleSpawnCount = 1; // Nombre d'obstacles à générer à chaque intervalle
+const obstacleSpawnCount = 1;
 const obstacleSpacing = 200
 const characters = {
   mme_fantastic: "public/models/mmefantastic.glb",
@@ -29,7 +29,7 @@ const characters = {
   mr_kang: "public/models/kang6.glb",
 };
 let flameModel, portalModel, rockModel;
- let animationId; // Déclaration globale de l'animation
+ let animationId; 
  let isPaused = false;
 
 const loader = new GLTFLoader();
@@ -50,7 +50,7 @@ loader.load('public/models/ObstacleDisque.glb', (gltf) => {
 
 
 window.onload = function() {
-  let selectedCharacter = localStorage.getItem("selectedCharacter") || "the_thing"; // Défaut au cas où fetch échoue
+  let selectedCharacter = localStorage.getItem("selectedCharacter");
   localStorage.setItem("selectedCharacter", selectedCharacter);
     console.log("Personnage sélectionné :", selectedCharacter);
     const userId = localStorage.getItem("user_id");
@@ -121,7 +121,7 @@ function initGame(selectedCharacter) {
   
     document.body.appendChild(tipsContainer);
   
-    // Faire disparaître le message après 3 secondes
+    
     setTimeout(() => {
       tipsContainer.style.opacity = "0";
       setTimeout(() => tipsContainer.remove(), 500);
@@ -161,7 +161,7 @@ showGameTips(scene);
 const leftWall = new THREE.Mesh(wallGeometry, wallShaderMaterial);
 const rightWall = new THREE.Mesh(wallGeometry, wallShaderMaterial);
 
-leftWall.position.set(-12, 5, 0); // Ajuste à ta piste
+leftWall.position.set(-12, 5, 0); 
 rightWall.position.set(12, 5, 0);
 
 scene.add(leftWall);
@@ -175,15 +175,15 @@ scene.add(rightWall);
   });
   document.body.appendChild(renderer.domElement);
 
-   // Ajout d'une lumière ambiante plus intense pour éclairer la piste
+   // Add a light 
   
   
   const loader = new GLTFLoader();
-  let trackModels = []; // Déclaration correcte en dehors de la boucle
+  let trackModels = []; 
 
   loader.load('public/models/trackmodele3d.glb', (gltf) => {
     for (let i = 0; i < 5; i++) {
-      const trackModel = gltf.scene.clone(); // Cloner le modèle chargé
+      const trackModel = gltf.scene.clone(); 
       trackModel.scale.set(25, 0.5, 50);
       trackModel.position.set(0, -1, -40 * i);
       scene.add(trackModel);
@@ -206,7 +206,7 @@ scene.add(rightWall);
   let powerAvailable = true;
   let powerActive = false;
 
-  // Création du conteneur de l'indicateur de pouvoir
+  // Create the power indicator 
 const powerIndicator = document.createElement("div");
 powerIndicator.style.position = "absolute";
 powerIndicator.style.left = "20px";
@@ -214,40 +214,40 @@ powerIndicator.style.top = "100px";
 powerIndicator.style.width = "50px";
 powerIndicator.style.height = "50px";
 powerIndicator.style.borderRadius = "50%";
-powerIndicator.style.background = "red"; // Commence en red car le pouvoir est indisponible
+powerIndicator.style.background = "red"; 
 powerIndicator.style.border = "3px solid white";
 powerIndicator.style.boxShadow = "0 0 10px rgba(255, 255, 255, 0.8)";
 document.body.appendChild(powerIndicator);
 
-// Fonction pour mettre à jour l'indicateur
+
 function updatePowerIndicator(available) {
   powerIndicator.style.background = available ? "green" : "red";
 }
 
 setTimeout(() => {
   powerAvailable = true;
-  updatePowerIndicator(true); // Passe en vert après 30 sec
+  updatePowerIndicator(true); 
 }, 30000);
 
 
-// Modification de l'événement pour activer le pouvoir
+
 window.addEventListener('keydown', (e) => {
   if (e.key === 'p' && powerAvailable && !powerActive) {
     powerActive = true;
     powerAvailable = false;
     activatePower();
     
-    // Change l'indicateur en rouge pendant la recharge
+    
     updatePowerIndicator(false);
 
     setTimeout(() => { 
       powerActive = false; 
-    }, 15000); // Pouvoir dure 15 secondes
+    }, 15000); 
 
     setTimeout(() => { 
       powerAvailable = true; 
-      updatePowerIndicator(true); // Passe en vert quand le pouvoir est prêt
-    }, 30000); // Recharge de 30 secondes
+      updatePowerIndicator(true); 
+    }, 30000); 
   }
 });
   
@@ -257,25 +257,25 @@ window.addEventListener('keydown', (e) => {
       powerActive = true;
       powerAvailable = false;
       activatePower();
-      setTimeout(() => { powerActive = false; }, 15000); // Pouvoir de 15 secondes
-      setTimeout(() => { powerAvailable = true; }, 30000); // Recharge de 30 secondes
+      setTimeout(() => { powerActive = false; }, 15000); 
+      setTimeout(() => { powerAvailable = true; }, 30000); 
     }
   });
 
   function activatePower() {
     console.log('Pouvoir activé !');
-    // Rendre le personnage invincible
+    
     character.userData.invincible = true;
     let blinkInterval = setInterval(() => {
-      character.visible = !character.visible; // Alterne la visibilité
-  }, 200); // Change toutes les 200ms (tu peux ajuster)
+      character.visible = !character.visible;
+  }, 200);
 
   setTimeout(() => {
-      clearInterval(blinkInterval);  // Arrête le clignotement
-      character.visible = true;      // Remet visible
+      clearInterval(blinkInterval);  
+      character.visible = true;      
       character.userData.invincible = false;
       console.log('Pouvoir terminé');
-  }, 15000); // Pouvoir pendant 15 secondes
+  }, 15000); 
 }
 
 
@@ -299,7 +299,7 @@ function showGameOver() {
   gameOverElement.style.flexDirection = "column";
   gameOverElement.style.alignItems = "center";
   gameOverElement.style.justifyContent = "center";
-  gameOverElement.style.opacity = "0"; // Apparition immédiate
+  gameOverElement.style.opacity = "0"; 
   gameOverElement.style.transition = "opacity 2s ease-in-out";
   gameOverElement.style.zIndex = "9999";
 
@@ -308,19 +308,18 @@ function showGameOver() {
   gameOverText.style.fontSize = "80px";
   gameOverText.style.fontWeight = "bold";
   gameOverText.style.color = "red";
-  gameOverText.style.fontFamily = "'Press Start 2P', sans-serif"; // Police type rétro
+  gameOverText.style.fontFamily = "'Press Start 2P', sans-serif"; 
   gameOverText.style.textShadow = "0 0 10px crimson, 0 0 10px darkred, 0 0 10px red";
   gameOverText.style.animation = "shake 1.5s ease-in-out infinite alternate";
-  gameOverText.style.marginBottom = "80px"; // Espacement augmenté pour que les boutons soient bien en dessous
-    // Conteneur des boutons
+  gameOverText.style.marginBottom = "80px"; 
     const buttonContainer = document.createElement("div");
     buttonContainer.style.display = "flex";
     buttonContainer.style.flexDirection = "column";
-    buttonContainer.style.alignItems = "center"; // Centrage horizontal
+    buttonContainer.style.alignItems = "center"; 
     buttonContainer.style.gap = "20px";
     buttonContainer.style.marginTop = "20px";
   
-    // Bouton "Recommencer"
+   
     const restartButton = document.createElement("button");
     restartButton.innerText = "Recommencer";
     restartButton.style.padding = "15px 30px";
@@ -335,7 +334,7 @@ function showGameOver() {
     restartButton.onmouseout = () => restartButton.style.background = "crimson";
     restartButton.onclick = restartGame;
   
-    // Bouton "Quitter"
+    
     const quitButton = document.createElement("button");
     quitButton.innerText = "Quitter";
     quitButton.style.padding = "15px 30px";
@@ -348,7 +347,7 @@ function showGameOver() {
     quitButton.style.transition = "0.3s";
     quitButton.onmouseover = () => quitButton.style.background = "darkgray";
     quitButton.onmouseout = () => quitButton.style.background = "gray";
-    quitButton.onclick = () => window.location.href = "selectionCharater.html"; // Redirection au menu de sélection
+    quitButton.onclick = () => window.location.href = "selectionCharater.html"; 
   
     buttonContainer.appendChild(restartButton);
     buttonContainer.appendChild(quitButton);
@@ -367,15 +366,7 @@ function showGameOver() {
   isGameOver = true;
 }
 
-// const style = document.createElement("style"); // Effect the game over shaking 
-// style.innerHTML = `
-//   @keyframes shake {
-//     0% { transform: translateX(-2px) rotate(-1deg); }
-//     50% { transform: translateX(2px) rotate(1deg); }
-//     100% { transform: translateX(-2px) rotate(-1deg); }
-//   }
-// `;
-// document.head.appendChild(style);
+
 
 
 const collisionSound = new Audio('public/sounds/songcollision1.mp3');
@@ -427,15 +418,15 @@ loaderCharacter.load(characters[selectedCharacter], (gltf) => {
   character.rotation.y = Math.PI;
   scene.add(character);
 
-  // On définit la taille désirée pour la hitbox (largeur, hauteur, profondeur)
-  const hitboxSize = new THREE.Vector3(1, 1.5, 1); // Ajuste ces valeurs selon ton modèle
-  // On positionne la hitbox de façon à couvrir le bas du personnage (ajustement vertical)
+  
+  const hitboxSize = new THREE.Vector3(1, 1.5, 1); 
+  
   characterHitbox.setFromCenterAndSize(
     character.position.clone().add(new THREE.Vector3(0, hitboxSize.y / 2, 0)),
     hitboxSize
   );
   if (selectedCharacter === "mr_kang") {
-    character.rotation.y = Math.PI * 2; // Tourne Kang dans l'autre sens
+    character.rotation.y = Math.PI * 2; 
   }
 });
 
@@ -444,9 +435,9 @@ let characterHitbox = new THREE.Box3();
 
 function updateCharacterHitbox() {
   if (character) {
-    // On récupère la taille actuelle (si jamais tu veux la changer dynamiquement)
+    
     const hitboxSize = characterHitbox.getSize(new THREE.Vector3());
-    // On repositionne la hitbox au centre du personnage, en ajoutant une offset verticale
+    
     characterHitbox.setFromCenterAndSize(
       character.position.clone().add(new THREE.Vector3(0, hitboxSize.y / 2, 0)),
       hitboxSize
@@ -457,12 +448,11 @@ function updateCharacterHitbox() {
 
 
 
-// Enlever les barres de scroll de la page
 window.addEventListener('load', () => {
   document.body.style.overflow = 'hidden';
 });
 
-// Keyboard Controls without Camera Movement
+
 window.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft" && characterLane > 0) {
     characterLane--;
@@ -530,15 +520,14 @@ function createObstacle(type, zPos, lane) {
         break;
   }
   if (obstacle) {
-    if (zPos > -5) zPos = -50; // Assure que l'obstacle n'apparaisse pas trop proche du joueur
+    if (zPos > -5) zPos = -50; 
     obstacle.position.set(lane, height, zPos);
     scene.add(obstacle);
     obstacles.push(obstacle)
   }
 }
 
-// Paramètres pour le spawn des obstacles
-; // Distance minimale entre les obstacles
+
 
 function createObstacles() {
   if (obstacles.length >= MAX_OBSTACLES) return;
@@ -547,37 +536,34 @@ function createObstacles() {
     const lane = lanes[Math.floor(Math.random() * lanes.length)];
     const types = ["rock", "flame", "portal"];
     const type = types[Math.floor(Math.random() * types.length)];
-    const zPos = -200 - (i * obstacleSpacing) - Math.random() * 100; // Ajout de l'espacement
+    const zPos = -200 - (i * obstacleSpacing) - Math.random() * 100; 
     createObstacle(type, zPos, lane);
   };
 };
 
-setInterval(createObstacles, 1000); // Créer des obstacles régulièrement sur chaque lane
+setInterval(createObstacles, 1000); 
 
 
-// Création des obstacles avec une position initiale suffisamment loin
+
 setTimeout(() => {
-  const initialZPos = -300; // Position initiale loin du personnage
-  const existingLanes = []; // Suivi des voies utilisées
+  const initialZPos = -300;
+  const existingLanes = []; 
   for (let i = 0; i < 10; i++) {
     const type = obstacleTypes[Math.floor(Math.random() * obstacleTypes.length)];
-    createObstacle(type, initialZPos - i * 40, existingLanes); // Espacement entre les obstacles
+    createObstacle(type, initialZPos - i * 40, existingLanes); 
   }
-}, 5000); // Temporisation pour donner du temps au joueur
+}, 5000); 
 
-// Fonction pour gérer le mouvement des obstacles
+// Fonction for the movement of the obstacles
 function handleObstacles() {
   obstacles.forEach((obs) => {
     obs.position.z += gameSpeed;
-    // Lorsque l'obstacle dépasse la zone visible, on le repositionne avec un décalage aléatoire
     if (obs.position.z > 5) {
-      // Réinitialisation avec un offset aléatoire pour éviter l'empilement
       obs.position.z = -300 - Math.random() * 100;
-      // Changer de voie de manière aléatoire
+      // Change the lane random
       const lanes = [-8, 0, 8];
       obs.position.x = lanes[Math.floor(Math.random() * lanes.length)];
     }
-    // Vérification de collision
     if (checkCollision(obs)) {
       showGameOver();
     }
@@ -619,75 +605,6 @@ function restartGame() {
 
 
 window.addEventListener("keydown", restartGame);
-
-// const { scoreElement, bestScoreElement, updateScoreDisplay, checkBestScore } = setupUI(gameMusic, animate, () => isPaused = true, () => isPaused = false);
-
-
-
-
-// Suppression de l'ancien conteneur UI et création d'un nouveau à gauche
-// const uiContainer = document.createElement("div");
-// uiContainer.style.position = "absolute";
-// uiContainer.style.left = "20px";
-// uiContainer.style.bottom = "20px";
-// uiContainer.style.display = "flex";
-// uiContainer.style.display = "grid";
-// uiContainer.style.gridTemplateAreas = `
-//   ".  P  ."
-//   ". up ."
-//   "left . right"
-//   ". down ."
-// `;
-// uiContainer.style.gap = "5px";
-// // uiContainer.style.flexDirection = "column"; // Empile les boutons verticalement
-// // uiContainer.style.justifyContent = "center"; // Centre verticalement
-// // uiContainer.style.alignItems = "center";     // Centre horizontalement
-// uiContainer.style.gap = "15px";
-// document.body.appendChild(uiContainer);
-
-
-// // Fonction pour créer des boutons interactifs
-// function createButton(iconPath, action) {
-//   const button = document.createElement("div");
-//   button.style.width = "80px";
-//   button.style.height = "80px";
-//   button.style.display = "flex";
-//   button.style.alignItems = "center";
-//   button.style.justifyContent = "center";
-//   button.style.cursor = "pointer";
-
-//   const iconButton = document.createElement("img");
-//   iconButton.src = iconPath;
-//   iconButton.style.width = "50px";
-//   iconButton.style.height = "50px";
-
-//   button.appendChild(iconButton);
-//     uiContainer.appendChild(button);
-//     return button;
-// }
-
-// // Simuler les actions du jeu
-// function moveLeft() { console.log("Déplacement à gauche"); }
-// function moveRight() { console.log("Déplacement à droite"); }
-// function jump() { console.log("Saut"); }
-// function down(){}
-
-
-
-
-// // Ajout des boutons
-// const leftButton = createButton("public/icons/arrow-left-line.svg", moveLeft);
-// const rightButton = createButton("public/icons/arrow-right-line.svg", moveRight);
-// const upButton = createButton("public/icons/arrow-up-line.svg", jump);
-// const downButton = createButton("public/icons/arrow-down-line.svg", down,);
-
-
-// leftButton.style.gridArea = "left";
-// rightButton.style.gridArea = "right";
-// upButton.style.gridArea = "up";
-// downButton.style.gridArea = "down";
-
-// createButton("P", ActivatePower);
 
 
 const gameTitle = document.createElement("div");
@@ -842,14 +759,6 @@ SettingsMenu.appendChild(quitButton);
 
 
 
-// // Vérifie si la fonction animate existe
-// if (typeof animate === 'undefined') {
-//   function animate() {
-//     animationId = requestAnimationFrame(animate);
-//     // Ajoute ici les appels nécessaires pour le rendu du jeu
-//   }
-// }
-
 menuIcon.addEventListener("click", () => {
   SettingsMenu.style.display = SettingsMenu.style.display === "none" ? "flex" : "none";
   if (SettingsMenu.style.display === "flex") {
@@ -894,34 +803,7 @@ function animate() {
   animate();
 }
 
-// // Classement des meilleurs scores
-// const leaderboard = document.createElement("div");
-// leaderboard.style.position = "absolute";
-// leaderboard.style.top = "120px";
-// leaderboard.style.left = "20px";
-// leaderboard.style.color = "#ffffff";
-// leaderboard.style.fontSize = "24px";
-// leaderboard.style.fontFamily = "Marvel, sans-serif";
-// document.body.appendChild(leaderboard);
  let bestScore = localStorage.getItem("bestScore") || 0;
  let score = 0;
  let highScores = [0, 0, 0];
 
-// function updateScore() {
-//     score += 1;
-//     scoreElement.innerText = `Score: ${score}`;
-   
-//     if (score > highScores[2]) {
-//         highScores[2] = score;
-//         highScores.sort((a, b) => b - a);
-//     }
-   
-//     leaderboard.innerHTML = `
-//         <div>Top Scores:</div>
-//         <div>1st: ${highScores[0]}</div>
-//         <div>2nd: ${highScores[1]}</div>
-//         <div>3rd: ${highScores[2]}</div>
-//     `;
-//     requestAnimationFrame(updateScore);
-// }
-// updateScore();

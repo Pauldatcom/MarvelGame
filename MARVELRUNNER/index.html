@@ -9,12 +9,12 @@
  
   
   <body>
-    <!-- Image d'introduction -->
+  
     <div id="intro-image" class="intro-image">
       <img src="public/img/MARVELOGO.PNG" alt="Introduction" />
     </div>
 
-    <!-- Vidéo -->
+   
     <video id="video" autoplay muted preload="auto">
       <source src="public/sounds/accueilvideo.mp4" type="video/mp4" />
       Votre navigateur ne supporte pas la lecture de vidéos.
@@ -24,7 +24,6 @@
       Votre navigateur ne supporte pas l'audio.
     </audio>
 
-    <!-- Image et boutons -->
     <div id="image-container" class="hidden">
       <img id="image" src="public/img/bgloging.PNG" alt="Image après la vidéo" />
       <div class="buttons-container">
@@ -43,25 +42,24 @@
       const imageContainer = document.getElementById("image-container");
       const backgroundMusic = document.getElementById("background-music");
 
-      // Cacher la vidéo et l'image finale au début
+      
       video.style.display = "none";
       imageContainer.style.display = "none";
 
-      // Après 3 secondes, faire disparaître l'image d'intro et démarrer la vidéo
+      
       setTimeout(() => {
         introImage.classList.add("fade-out");
 
-        // Attendre la fin de l'animation de fondu
+        
         setTimeout(() => {
           introImage.style.display = "none";
           video.style.display = "block";
           video.play().catch(function (error) {
-            console.log("La lecture automatique a échoué:", error);
           });
-        }, 800); // Durée de l'animation de fondu
-      }, 1500); // Durée d'affichage de l'image d'intro
+        }, 800); 
+      }, 1500); 
 
-      // Quand la vidéo se termine, afficher l'image et le bouton
+      
       video.addEventListener("ended",  () => {
         backgroundMusic.pause();
         video.style.display = "none";
@@ -70,15 +68,13 @@
 
       
 
-// Fonction pour jouer la musique après interaction
+// Play the music after interact 
 function playMusic() {
   if (!backgroundMusic.paused || video.ended) return;
   backgroundMusic.play().catch((error) => {
-    console.log("La lecture automatique de la musique a échoué :", error);
   });
 }
 
-// Déclencher la musique après une interaction
 document.addEventListener("click", playMusic);
 document.addEventListener("keydown", playMusic);
 

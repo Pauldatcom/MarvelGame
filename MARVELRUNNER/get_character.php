@@ -14,7 +14,7 @@ if ($user_id == 0) {
     exit;
 }
 
-// ✅ Récupère uniquement le dernier personnage sélectionné par l'utilisateur
+// Get only the last character selected 
 $sql = "SELECT character_name FROM character_selection WHERE user_id = ? ORDER BY id DESC LIMIT 1";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);

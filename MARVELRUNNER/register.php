@@ -1,7 +1,7 @@
 <?php
 file_put_contents("debug_register.log", file_get_contents("php://input")); 
 
-error_reporting(E_ALL);
+
 ini_set('display_errors', 1);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
@@ -22,7 +22,7 @@ if (empty($email) || empty($password) || empty($date_naissance) || empty($sexe) 
     exit;
 }
 
-// Vérifie si l'email existe déjà
+// Check if the email exist already 
 $sql_check = "SELECT id FROM users WHERE email = ?";
 $stmt_check = $conn->prepare($sql_check);
 $stmt_check->bind_param("s", $email);
@@ -34,18 +34,17 @@ if ($result_check->num_rows > 0) {
     exit;
 }
 
-// Hash du mot de passe
+//Hash the password
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-// Insertion de l'utilisateur
+// Insert the ID 
 $sql = "INSERT INTO users (email, password, date_naissance, sexe) VALUES (?, ?, ?, ?)";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("ssss", $email, $hashed_password, $date_naissance, $sexe);
 
 if ($stmt->execute()) {
-    $user_id = $stmt->insert_id; // Récupérer l'ID du nouvel utilisateur
-
-    // Insérer le personnage choisi
+    $user_id = $stmt->insert_id; 
+   
     $sql_character = "INSERT INTO character_selection (user_id, character_name) VALUES (?, ?)";
     $stmt_character = $conn->prepare($sql_character);
     $stmt_character->bind_param("is", $user_id, $character_name);
