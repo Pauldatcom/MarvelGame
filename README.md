@@ -8,7 +8,7 @@ il intègre une base de données via **PHP & MySQL** pour la gestion des personn
 ## ⚙️ **Installation et exécution**
 
 ### **1️⃣ Prérequis**
-- Node.js installé (>= 16)
+- Node.js installé 
 - MySQL installé
 - Yarn installé (`npm install -g yarn`)
 
